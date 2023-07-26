@@ -1,3 +1,9 @@
-<header class="w-full bg-red-300 h-16 flex items-center justify-center">
-  Header
+<header>
+  <mat-toolbar color="primary" class="flex justify-between">
+    <span header class="display-6">Listado de alumnos</span>
+    <button mat-flat-button color="accent" (click)="openNewUsersModal.emit()">
+      <mat-icon>person_add</mat-icon>
+      Crear usuario
+    </button>
+  </mat-toolbar>
 </header>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from 'src/types';
 
 @Component({
   selector: 'app-main-wrapper',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-wrapper.component.scss']
 })
 export class MainWrapperComponent {
+  @Input() users: User[] = [];
+  @Output() openEditUserModal: EventEmitter<number> = new EventEmitter();
+  @Output() openDeleteUserConfirmation: EventEmitter<number> = new EventEmitter();
 
 }
