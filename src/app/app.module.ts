@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -19,6 +21,8 @@ import { StudentsListComponent } from './students-list/students-list.component';
 import { FullNamePipe } from './shared/pipes/full-name.pipe';
 import { HeaderDirective } from './shared/directives/header.directive';
 import { DialogComponent } from './dialog/dialog.component';
+import { AuthComponent } from './auth/auth.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { DialogComponent } from './dialog/dialog.component';
     FullNamePipe,
 
     HeaderDirective,
-     DialogComponent,
+    DialogComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { DialogComponent } from './dialog/dialog.component';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    AppRoutingModule
   ],
   exports: [
     HeaderDirective,

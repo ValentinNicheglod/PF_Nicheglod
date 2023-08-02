@@ -4,6 +4,7 @@
   </mat-sidenav>
   <mat-sidenav-content class="grid grid-rows-[4rem_1fr]" style="display: grid;">
     <app-header (openNewUsersModal)="openNewUsersModal()"></app-header>
-    <app-main-wrapper (openDeleteUserConfirmation)="openDeleteUserConfirmation($event)" (openEditUserModal)="openEditUsersModal($event)" [users]="users" class="flex flex-grow"></app-main-wrapper>
+    <!-- <app-main-wrapper (openDeleteUserConfirmation)="openDeleteUserConfirmation($event)" (openEditUserModal)="openEditUsersModal($event)" [users]="users" class="flex flex-grow"></app-main-wrapper> -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
