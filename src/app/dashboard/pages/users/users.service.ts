@@ -17,60 +17,48 @@ export class UsersService {
 
   createUser(user: NewUser) {
     this.httpClient.post<User>('http://localhost:3000/users', user)
-    .pipe(
-      mergeMap((newUser: User) => this.users$.pipe(
-        take(1),
-        map(
-          (currentUsers) => [...currentUsers, newUser])
-        )
+      .pipe(
+        mergeMap((newUser: User) => this.users$.pipe(
+          take(1),
+          map(
+            (currentUsers) => [...currentUsers, newUser])
+        ))
       )
-    )
-    .subscribe({
-      next: (users) =>  this._users$.next(users)
-    })
-
-    this._users$
-      .pipe(take(1))
       .subscribe({
-        next: (currentUsers) => {
-          this._users$.next([
-            ...currentUsers,
-            {
-              id: new Date().getTime(),
-              ...user
-            }
-          ])
-        }
+        next: (users) => this._users$.next(users)
       })
   }
 
   deleteUser(userId: number) {
-    this._users$
-      .pipe(take(1))
+    this.httpClient.delete<User>(`http://localhost:3000/users/${userId}`)
+      .pipe(
+        mergeMap(() => this.users$.pipe(
+          take(1),
+          map((currentUsers) => currentUsers.filter((user) => user.id !== userId))
+        ))
+      )
       .subscribe({
-        next: (currentUsers) => {
-          this._users$.next(currentUsers.filter((user) => user.id !== userId))
-        }
+        next: (users) => this._users$.next(users)
       })
   }
 
   editUser(user: User) {
-    this._users$
-      .pipe(take(1))
+      this.httpClient.put<User>(`http://localhost:3000/users/${user.id}`, user)
+      .pipe(
+        mergeMap(() => this.users$.pipe(
+          take(1),
+          map((currentUsers) => currentUsers.filter((_user) => _user.id !== user.id))
+        ))
+      )
       .subscribe({
-        next: (currentUsers) => {
-          const _currentUsers = [...currentUsers];
-          const userIndex = _currentUsers.findIndex((u) => u.id === user.id);
-          _currentUsers.splice(userIndex, 1, user);
-          this._users$.next(_currentUsers);
-        }
+        next: () => this.getUsers()
       })
   }
 
   getUserById(id: number): Observable<User | undefined> {
     return this.users$.pipe(
       take(1),
-      map(( users ) =>  users.find((u) => u.id === id))
+      map((users) => users.find((u) => u.id === id))
     )
   }
 
