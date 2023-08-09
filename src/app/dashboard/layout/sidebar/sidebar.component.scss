@@ -1,0 +1,9 @@
+:host::ng-deep {
+  mat-nav-list {
+    a {
+      span, mat-icon {
+        color: white;
+      }
+    }
+  }
+}

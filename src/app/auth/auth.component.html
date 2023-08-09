@@ -1,1 +1,11 @@
-<p>auth works!</p>
+<main class="grid grid-cols-2 h-full">
+  <section class="grid place-items-center bg-slate-100">
+    <div class="display-6 absolute left-4 top-4">{{title}}</div>
+    <mat-card class="w-5/6 ">
+      <router-outlet></router-outlet>
+    </mat-card>
+  </section>
+  <section class="pattern">
+    <div class="overlay h-full"></div>
+  </section>
+</main>

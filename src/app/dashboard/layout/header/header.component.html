@@ -1,0 +1,9 @@
+<header>
+  <mat-toolbar color="primary" class="flex justify-between">
+    <span header class="display-6">{{ title }}</span>
+    <button mat-flat-button color="accent" (click)="openCreationModal.emit()">
+      <mat-icon>add</mat-icon>
+      {{ buttonText }}
+    </button>
+  </mat-toolbar>
+</header>

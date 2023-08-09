@@ -1,0 +1,12 @@
+.pattern {
+  background-size: cover;
+  background-image: url(https://static.vecteezy.com/system/resources/previews/007/437/861/original/abstract-stripe-background-in-black-and-white-with-wavy-lines-pattern-free-vector.jpg);
+}
+
+.overlay {
+  background: linear-gradient(90deg, rgb(241 245 249), transparent);
+}
+
+mat-card {
+  max-width: 400px;
+}
