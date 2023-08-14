@@ -18,14 +18,5 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit() {
-    if (this.registrationForm.valid) {
-      // Aquí puedes agregar la lógica para registrar al usuario utilizando los valores del formulario.
-      console.log('Email:', this.registrationForm.value.email);
-      console.log('Password:', this.registrationForm.value.password);
-      console.log('Full Name:', this.registrationForm.value.fullName);
-    } else {
-      // El formulario no es válido, puedes mostrar mensajes de error o realizar alguna acción en este caso.
-    }
-  }
+  onSubmit() {}
 }

@@ -11,6 +11,9 @@ import { HeaderDirective } from './directives/header.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatTableModule,
 
     ReactiveFormsModule,
   ]

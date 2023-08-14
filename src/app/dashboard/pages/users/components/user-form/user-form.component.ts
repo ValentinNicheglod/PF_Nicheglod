@@ -15,8 +15,20 @@ export class UserFormComponent {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    role: new FormControl('', Validators.required)
   };
+
+  userRoles = [{
+    label: 'Administrador',
+    value: 'admin'
+  }, {
+    label: 'Usuario',
+    value: 'user',
+  }, {
+    label: 'Estudiante',
+    value: 'student'
+  }]
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,12 +38,7 @@ export class UserFormComponent {
   }
 
   setFormData() {
-    this.userForm = new FormGroup({
-      name: this.formControls.firstName,
-      surname: this.formControls.lastName,
-      email: this.formControls.email,
-      password: this.formControls.password
-    });
+    this.userForm = new FormGroup(this.formControls);
 
     if (this.data?.user) {
       this.action = 'Editar'
@@ -41,7 +48,6 @@ export class UserFormComponent {
   }
 
    onSubmit() {
-    console.log(this.userForm)
     if (this.userForm.valid) {
       const userData = this.userForm.getRawValue();
       if (this.data?.user.id) {

@@ -1,6 +1,5 @@
 <section class="grid grid-rows-[4rem_1fr]">
-  <app-header title="Usuarios" buttonText="Crear usuario" (openCreationModal)="openCreateUserModal()"></app-header>
-  <table *ngIf="users.length" mat-table [dataSource]="users">
+  <table *ngIf="(users | async)?.length" mat-table [dataSource]="users">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let user"> {{ user.id }} </td>
@@ -20,7 +19,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let user; index as i">
         <div class="flex justify-end gap-1">
-          <button mat-icon-button (click)="openEditUserModal(i)">
+          <button mat-icon-button (click)="openEditUserModal(user)">
             <mat-icon class="text-gray-600">edit</mat-icon>
           </button>
 

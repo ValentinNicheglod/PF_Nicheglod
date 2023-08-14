@@ -4,6 +4,7 @@ export interface User {
   surname: string;
   email: string;
   password: string;
+  role: 'admin' | 'user' | 'student',
 }
 
 export interface NewUser {

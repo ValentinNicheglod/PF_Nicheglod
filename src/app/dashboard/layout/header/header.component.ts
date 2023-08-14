@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Input() title: string = '';
-  @Input() buttonText: string = '';
+  title: string = '';
+  buttonText?: string | null = null;
 
-  @Output() openCreationModal: EventEmitter<any> = new EventEmitter();
+  constructor(private _dashboardService: DashboardService) {
+    this._dashboardService.headerData
+      .subscribe((headerData) => {
+        this.title = headerData.title;
+        this.buttonText = headerData.buttonText;
+      })
+  }
+
+  openCreationModal() {
+    this._dashboardService.openCreationModal()
+  }
 }

@@ -1,81 +1,256 @@
 {
+  "courses": [
+    {
+      "id": 1,
+      "name": "Introducción a la Programación",
+      "description": "Aprende los conceptos básicos de la programación y cómo escribir código.",
+      "startDate": "2023-09-01",
+      "endDate": "2023-11-30"
+    },
+    {
+      "id": 2,
+      "name": "Diseño Gráfico para Principiantes",
+      "description": "Descubre las herramientas y principios esenciales del diseño gráfico.",
+      "startDate": "2023-08-15",
+      "endDate": "2023-10-15"
+    },
+    {
+      "id": 3,
+      "name": "Inglés Intermedio: Conversación Fluida",
+      "description": "Mejora tus habilidades de conversación en inglés a un nivel intermedio.",
+      "startDate": "2023-09-10",
+      "endDate": "2023-12-10"
+    },
+    {
+      "id": 4,
+      "name": "Introducción a la Inteligencia Artificial",
+      "description": "Explora los conceptos básicos y aplicaciones de la inteligencia artificial.",
+      "startDate": "2023-10-01",
+      "endDate": "2023-12-15"
+    },
+    {
+      "id": 5,
+      "name": "Marketing Digital: Estrategias Efectivas",
+      "description": "Aprende a crear y ejecutar estrategias de marketing digital exitosas.",
+      "startDate": "2023-09-15",
+      "endDate": "2023-11-15"
+    },
+    {
+      "id": 6,
+      "name": "Fotografía Profesional para Aficionados",
+      "description": "Domina las técnicas fotográficas y composición para tomar fotos de alta calidad.",
+      "startDate": "2023-10-05",
+      "endDate": "2023-12-05"
+    },
+    {
+      "id": 7,
+      "name": "Desarrollo Web Full Stack",
+      "description": "Conviértete en un desarrollador web completo, capaz de trabajar en el front-end y el back-end.",
+      "startDate": "2023-09-20",
+      "endDate": "2023-11-30"
+    },
+    {
+      "id": 8,
+      "name": "Introducción al Yoga y la Meditación",
+      "description": "Descubre los fundamentos del yoga y la meditación para mejorar tu bienestar.",
+      "startDate": "2023-08-25",
+      "endDate": "2023-10-25"
+    },
+    {
+      "id": 9,
+      "name": "Finanzas Personales: Gestión y Ahorro",
+      "description": "Aprende a administrar tus finanzas, hacer presupuestos y ahorrar dinero.",
+      "startDate": "2023-10-10",
+      "endDate": "2023-12-10"
+    },
+    {
+      "id": 10,
+      "name": "Arte Abstracto: Expresión Creativa",
+      "description": "Explora tu lado creativo a través de técnicas de arte abstracto y expresión personal.",
+      "startDate": "2023-09-05",
+      "endDate": "2023-11-05"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "courseId": 2
+    },
+    {
+      "id": 2,
+      "studentId": 3,
+      "courseId": 1
+    },
+    {
+      "id": 3,
+      "studentId": 5,
+      "courseId": 3
+    },
+    {
+      "id": 4,
+      "studentId": 2,
+      "courseId": 6
+    },
+    {
+      "id": 5,
+      "studentId": 4,
+      "courseId": 5
+    },
+    {
+      "id": 6,
+      "studentId": 7,
+      "courseId": 4
+    },
+    {
+      "id": 7,
+      "studentId": 6,
+      "courseId": 7
+    },
+    {
+      "id": 8,
+      "studentId": 1,
+      "courseId": 1
+    },
+    {
+      "id": 9,
+      "studentId": 3,
+      "courseId": 3
+    },
+    {
+      "id": 10,
+      "studentId": 5,
+      "courseId": 5
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "Maria",
+      "surname": "Garcia",
+      "email": "maria.garcia@example.com",
+      "creationDate": "2023-08-01"
+    },
+    {
+      "id": 2,
+      "name": "Carlos",
+      "surname": "Rodriguez",
+      "email": "carlos.rodriguez@example.com",
+      "creationDate": "2023-07-25"
+    },
+    {
+      "id": 3,
+      "name": "Luisa",
+      "surname": "Martinez",
+      "email": "luisa.martinez@example.com",
+      "creationDate": "2023-07-20"
+    },
+    {
+      "id": 4,
+      "name": "Andres",
+      "surname": "Lopez",
+      "email": "andres.lopez@example.com",
+      "creationDate": "2023-07-15"
+    },
+    {
+      "id": 5,
+      "name": "Ana",
+      "surname": "Perez",
+      "email": "ana.perez@example.com",
+      "creationDate": "2023-07-10"
+    },
+    {
+      "id": 6,
+      "name": "Diego",
+      "surname": "Hernandez",
+      "email": "diego.hernandez@example.com",
+      "creationDate": "2023-07-05"
+    },
+    {
+      "id": 7,
+      "name": "Valeria",
+      "surname": "Gomez",
+      "email": "valeria.gomez@example.com",
+      "creationDate": "2023-06-30"
+    },
+    {
+      "id": 8,
+      "name": "Javier",
+      "surname": "Sanchez",
+      "email": "javier.sanchez@example.com",
+      "creationDate": "2023-06-25"
+    },
+    {
+      "id": 9,
+      "name": "Isabella",
+      "surname": "Torres",
+      "email": "isabella.torres@example.com",
+      "creationDate": "2023-06-20"
+    },
+    {
+      "id": 10,
+      "name": "Santiago",
+      "surname": "Rivera",
+      "email": "santiago.rivera@example.com",
+      "creationDate": "2023-06-15"
+    }
+  ],
   "users": [
     {
+      "id": 1,
       "name": "John",
-      "surname": "Doeeee",
+      "surname": "Doe",
       "email": "john.doe@example.com",
       "password": "password1",
-      "id": 1
+      "role": "admin"
     },
     {
       "id": 2,
       "name": "Jane",
       "surname": "Smith",
       "email": "jane.smith@example.com",
-      "password": "password2"
+      "password": "password2",
+      "role": "user"
     },
     {
       "id": 3,
       "name": "Michael",
       "surname": "Johnson",
       "email": "michael.johnson@example.com",
-      "password": "password3"
+      "password": "password3",
+      "role": "user"
     },
     {
       "id": 4,
       "name": "Emily",
       "surname": "Williams",
       "email": "emily.williams@example.com",
-      "password": "password4"
+      "password": "password4",
+      "role": "user"
     },
     {
       "id": 5,
       "name": "William",
       "surname": "Brown",
       "email": "william.brown@example.com",
-      "password": "password5"
+      "password": "password5",
+      "role": "user"
     },
     {
       "id": 6,
       "name": "Olivia",
       "surname": "Davis",
       "email": "olivia.davis@example.com",
-      "password": "password6"
+      "password": "password6",
+      "role": "user"
     },
     {
       "id": 7,
       "name": "James",
       "surname": "Miller",
       "email": "james.miller@example.com",
-      "password": "password7"
-    },
-    {
-      "id": 8,
-      "name": "Sophia",
-      "surname": "Wilson",
-      "email": "sophia.wilson@example.com",
-      "password": "password8"
-    },
-    {
-      "id": 9,
-      "name": "Alexander",
-      "surname": "Moore",
-      "email": "alexander.moore@example.com",
-      "password": "password9"
-    },
-    {
-      "id": 10,
-      "name": "Emma",
-      "surname": "Taylor",
-      "email": "emma.taylor@example.com",
-      "password": "password10"
-    },
-    {
-      "name": "Robinson",
-      "surname": "Will",
-      "email": "robin@example.com",
-      "password": "password1",
-      "id": 11
+      "password": "password7",
+      "role": "user"
     }
   ]
 }

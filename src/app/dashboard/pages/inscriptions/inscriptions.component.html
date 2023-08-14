@@ -1,0 +1,36 @@
+<section class="grid grid-rows-[4rem_1fr]">
+  <table *ngIf="(inscriptions | async)?.length" mat-table [dataSource]="(inscriptions | async) || []">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let inscription"> {{ inscription.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="studentName">
+      <th mat-header-cell *matHeaderCellDef> Nombre del Estudiante</th>
+      <td mat-cell *matCellDef="let inscription"> {{(studentNames | async)?.[inscription.studentId] }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="courseName">
+      <th mat-header-cell *matHeaderCellDef> Curso </th>
+      <td mat-cell *matCellDef="let inscription"> {{(courseNames | async)?.[inscription.courseId] }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let inscription; index as i">
+        <div class="flex justify-end gap-1">
+          <button mat-icon-button (click)="openEditInscriptionModal(inscription)">
+            <mat-icon class="text-gray-600">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="openDeleteInscriptionConfirmation(inscription.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+</section>
