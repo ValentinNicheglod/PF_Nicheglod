@@ -9,6 +9,7 @@ export class HeaderDirective {
 
   ngOnInit(): void {
     this.renderer.setStyle(this.elementRef.nativeElement, 'font-size', '20px');
+    this.renderer.setStyle(this.elementRef.nativeElement, 'color', '#3DB1C8');
   }
 
 }

@@ -1,9 +1,28 @@
 <header>
-  <mat-toolbar color="primary" class="flex justify-between">
-    <span header class="display-6">{{ title }}</span>
-    <button *ngIf="buttonText" mat-flat-button color="accent" (click)="openCreationModal()">
-      <mat-icon>add</mat-icon>
-      {{ buttonText }}
-    </button>
+  <mat-toolbar color="primary" >
+    <mat-toolbar-row class="flex justify-between">
+        <div class="flex gap-2 items-center">
+          <img src="assets/logo.png" class="h-8 w-8" alt="">
+          <span header>Dashboard</span>
+        </div>
+        <div class="flex gap-2 items-center">
+          <div class="bg-slate-400 rounded-full h-8 w-8 flex items-center justify-center">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div>
+            <div class="text-white font-light	text-sm">Hola,</div>
+            <div class="text-base">
+              {{ (user | async)?.name }} {{ (user | async)?.surname }}
+            </div>
+          </div>
+      </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="bg-zinc-500 flex justify-between">
+        <span class="text-base font-normal">{{ title }}</span>
+        <button *ngIf="buttonText" mat-flat-button color="accent" (click)="openCreationModal()">
+          <mat-icon>add</mat-icon>
+          {{ buttonText }}
+        </button>
+    </mat-toolbar-row>
   </mat-toolbar>
 </header>

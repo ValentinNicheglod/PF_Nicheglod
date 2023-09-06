@@ -12,8 +12,8 @@ export class UserFormComponent {
   userForm: FormGroup = new FormGroup({});
 
   formControls = {
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     role: new FormControl('', Validators.required)
@@ -25,9 +25,6 @@ export class UserFormComponent {
   }, {
     label: 'Usuario',
     value: 'user',
-  }, {
-    label: 'Estudiante',
-    value: 'student'
   }]
 
   constructor(
