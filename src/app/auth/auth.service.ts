@@ -5,11 +5,15 @@ import { User } from '../dashboard/pages/users/models';
 import { SharedService } from '../shared/shared.service';
 import { Router } from '@angular/router';
 import { UsersService } from '../dashboard/pages/users/users.service';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../store/auth.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  //TODO: Cambiar todos los behavior subject por store
 
   users: User[] = [];
   user: User | null = null;
@@ -17,7 +21,7 @@ export class AuthService {
   private _authUser = new BehaviorSubject<User | null>(null);
   public authUser = this._authUser.asObservable();
 
-  constructor(private userService: UsersService, private sharedService: SharedService, private router: Router) {
+  constructor(private userService: UsersService, private sharedService: SharedService, private router: Router, private store: Store) {
     this.userService.users.subscribe((users) => this.users = users);
     this.getStoredUser();
   }
@@ -47,6 +51,7 @@ export class AuthService {
     if (loggedUser && loggedUser.password === loginData.password) {
       this._authUser.next(loggedUser);
       this.user = loggedUser;
+      this.store.dispatch(AuthActions.setAuthUser({ data: loggedUser }));
       localStorage.setItem('user', JSON.stringify(loggedUser));
       this.router.navigate(['/dashboard']);
     } else {
@@ -57,6 +62,7 @@ export class AuthService {
   logout() {
     this._authUser.next(null);
     this.user = null;
+    this.store.dispatch(AuthActions.setAuthUser({ data: null }));
     localStorage.removeItem('user');
     this.router.navigate(['/auth/login']);
   }

@@ -29,11 +29,11 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let student; index as i">
         <div class="flex justify-end gap-1">
-          <button mat-icon-button (click)="openEditStudentModal(student)">
+          <button mat-icon-button matTooltip="Editar" (click)="openEditStudentModal(student)">
             <mat-icon class="text-gray-600">edit</mat-icon>
           </button>
 
-          <button mat-icon-button color="warn" (click)="openDeleteStudentConfirmation(student.id)">
+          <button mat-icon-button color="warn" matTooltip="Eliminar" (click)="openDeleteStudentConfirmation(student.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>

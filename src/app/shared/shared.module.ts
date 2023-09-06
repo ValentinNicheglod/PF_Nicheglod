@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatSelectModule,
     MatTableModule,
+    MatTooltipModule,
 
     ReactiveFormsModule,
   ]

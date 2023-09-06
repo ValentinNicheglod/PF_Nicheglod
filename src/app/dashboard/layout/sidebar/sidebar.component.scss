@@ -1,9 +1,13 @@
-:host::ng-deep {
-  mat-nav-list {
-    a {
-      span, mat-icon {
-        color: white;
-      }
+
+.active {
+  ::ng-deep {
+
+    .mdc-list-item__primary-text {
+      color: #FFFF !important;
     }
+  }
+
+  mat-icon {
+    color: #FFFF !important;
   }
 }

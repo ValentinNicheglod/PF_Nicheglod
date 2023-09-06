@@ -16,7 +16,7 @@ import { AuthService } from '../auth/auth.service';
 
 interface HeaderData {
   title: string;
-  buttonText?: string;
+  buttonText?: string | null;
 }
 
 interface SectionData {
@@ -79,7 +79,7 @@ export class DashboardService {
       case 'students': {
         this.headerData.next({
           title: 'Estudiantes',
-          buttonText: 'Crear Estudiante'
+          buttonText: this._authService.isAdmin ? 'Crear Estudiante' : null
         })
         this.currentSectionData = {
           service: this._studentsService,
@@ -101,7 +101,7 @@ export class DashboardService {
       case 'courses': {
         this.headerData.next({
           title: 'Cursos',
-          buttonText: 'Crear Curso'
+          buttonText: this._authService.isAdmin ? 'Crear Curso' : null
         })
         this.currentSectionData = {
           service: this._coursesService,

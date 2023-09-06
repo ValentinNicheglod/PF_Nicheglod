@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { Inscription, NameData } from './models/index';
+import { Inscription, InscriptionData, NameData } from './models/index';
 import { Observable, map } from 'rxjs';
 import { DashboardService } from '../../dashboard.service';
 import { InscriptionsService } from './inscriptions.service';
+import { Store } from '@ngrx/store';
+import { InscriptionsActions } from './store/inscriptions.actions';
+import { inscriptionsData, selectInscriptionsState } from './store/inscriptions.selectors';
 
 @Component({
   selector: 'app-inscriptions',
@@ -11,20 +14,23 @@ import { InscriptionsService } from './inscriptions.service';
 })
 export class InscriptionsComponent {
   columns: string[];
-  inscriptions: Observable<Inscription[]>;
+  inscriptions: Observable<InscriptionData[] | null>;
 
-  courseNames: Observable<NameData>;
-  studentNames: Observable<NameData>;
+  /* courseNames: Observable<NameData>;
+  studentNames: Observable<NameData>; */
 
   constructor(
     private _inscriptionsService: InscriptionsService,
-    private _dashboardService: DashboardService
+    private _dashboardService: DashboardService,
+    private store: Store
   ) {
-    this.inscriptions = this._inscriptionsService.observable;
+    this.store.dispatch(InscriptionsActions.loadInscriptions())
+    /* this.inscriptions = this._inscriptionsService.observable; */
     this.columns = this._inscriptionsService.columns;
+    this.inscriptions = this.store.select(inscriptionsData);
 
-    this.courseNames = this._inscriptionsService.courseNames$;
-    this.studentNames = this._inscriptionsService.studentNames$
+    /* this.courseNames = this._inscriptionsService.courseNames$;
+    this.studentNames = this._inscriptionsService.studentNames$ */
   }
 
   openEditInscriptionModal(inscription: Inscription): void {
