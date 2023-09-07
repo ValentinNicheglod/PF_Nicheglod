@@ -5,6 +5,6 @@ export const AuthActions = createActionGroup({
   source: 'Auth',
   events: {
     'login': props<{email: string, password: string}>(),
-    'set auth user': props<{ data: User | null }>()
+    'Set Auth User': props<{ data: User | null }>()
   }
 })

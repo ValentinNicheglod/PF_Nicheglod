@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subject, map, mergeMap, take } from 'rxjs';
+import { Observable, Subject, map, mergeMap, take } from 'rxjs';
 import { UserFormComponent } from './pages/users/components/user-form/user-form.component';
 import { CourseFormComponent } from './pages/courses/components/course-form/course-form.component';
 import { UsersService } from './pages/users/users.service';
@@ -12,7 +12,9 @@ import { StudentsService } from './pages/students/students.service';
 import { StudentFormComponent } from './pages/students/components/student-form/student-form.component';
 import { InscriptionFormComponent } from './pages/inscriptions/components/inscription-form/inscription-form.component';
 import { InscriptionsService } from './pages/inscriptions/inscriptions.service';
-import { AuthService } from '../auth/auth.service';
+import { Store } from '@ngrx/store';
+import { InscriptionsActions } from './pages/inscriptions/store/inscriptions.actions';
+import { isAdminUser } from '../store/auth.selector';
 
 interface HeaderData {
   title: string;
@@ -32,9 +34,9 @@ export class DashboardService {
   headerData: Subject<HeaderData> = new Subject();
   currentSectionData?: SectionData;
   currentPage: 'home' | 'users' | 'courses' | 'students' | 'inscriptions' | string = 'home';
+  isAdminUser: Observable<boolean>;
 
   constructor(
-    private _authService: AuthService,
     private _coursesService: CoursesService,
     private _inscriptionsService: InscriptionsService,
     private _studentsService: StudentsService,
@@ -44,12 +46,13 @@ export class DashboardService {
     private store: Store,
     private httpClient: HttpClient
   ) {
+    this.isAdminUser = store.select(isAdminUser);
     this.setPageData(router.url.split('/').pop());
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const currentPage = router.url.split('/').pop();
-        if (currentPage) {
+        if (currentPage && router.url.includes('dashboard')) {
           this.currentPage = currentPage;
           this.setPageData(currentPage);
           this.getAll();
@@ -80,7 +83,7 @@ export class DashboardService {
       case 'students': {
         this.headerData.next({
           title: 'Estudiantes',
-          buttonText: this._authService.isAdmin ? 'Crear Estudiante' : null
+          buttonText: this.isAdminUser ? 'Crear Estudiante' : null
         })
         this.currentSectionData = {
           service: this._studentsService,
@@ -102,7 +105,7 @@ export class DashboardService {
       case 'courses': {
         this.headerData.next({
           title: 'Cursos',
-          buttonText: this._authService.isAdmin ? 'Crear Curso' : null
+          buttonText: this.isAdminUser ? 'Crear Curso' : null
         })
         this.currentSectionData = {
           service: this._coursesService,
@@ -113,7 +116,7 @@ export class DashboardService {
     }
 
     const tableColumns: string[] = this.currentSectionData?.service.columns;
-    if (this._authService.isAdmin && !tableColumns?.includes('actions')) {
+    if (this.isAdminUser && !tableColumns?.includes('actions')) {
       tableColumns?.push('actions');
     }
   }

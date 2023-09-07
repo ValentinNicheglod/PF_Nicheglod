@@ -13,27 +13,17 @@ import { AuthActions } from 'src/app/store/auth.actions';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private store: Store) {
+  constructor(private formBuilder: FormBuilder, private _authService: AuthService, private store: Store) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-
-    // Asi obtenemos todo el store
-    this.store.subscribe({
-      next: (data) => { console.log(data) }
-    })
-
-    // Asi solo auth
-    this.store.select(authState).subscribe({
-      next: (data) => { console.log(data) }
-    })
   }
 
   login() {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.getRawValue();
-      this.authService.login(loginData);
+      this._authService.login(loginData);
 
       // this.store.dispatch(AuthActions.login())
 
