@@ -6,3 +6,7 @@ export const selectInscriptionsState = createFeatureSelector<fromInscriptions.St
 );
 
 export const inscriptionsData = createSelector(selectInscriptionsState, (state) => state.data);
+
+export const courseOptions = createSelector(selectInscriptionsState, (state) => state.courseOptions);
+export const studentOptions = createSelector(selectInscriptionsState, (state) => state.studentOptions);
+

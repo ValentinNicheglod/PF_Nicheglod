@@ -3,6 +3,7 @@ import { DashboardService } from '../../dashboard.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../../pages/users/models';
+import { InscriptionsService } from '../../pages/inscriptions/inscriptions.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
   buttonText?: string | null = null;
   user: Observable<User | null>;
 
-  constructor(private _dashboardService: DashboardService, _authService: AuthService) {
+  constructor(private _dashboardService: DashboardService, private _inscriptionService: InscriptionsService, _authService: AuthService) {
     this._dashboardService.headerData
       .subscribe((headerData) => {
         this.title = headerData.title;
@@ -24,6 +25,10 @@ export class HeaderComponent {
   }
 
   openCreationModal() {
-    this._dashboardService.openCreationModal()
+    if (this.title === 'Inscripciones') {
+      this._inscriptionService.openCreationModal();
+    } else {
+      this._dashboardService.openCreationModal()
+    }
   }
 }

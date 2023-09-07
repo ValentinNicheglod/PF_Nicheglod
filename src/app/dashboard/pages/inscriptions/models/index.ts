@@ -7,6 +7,11 @@ export interface Inscription {
   courseId: number;
 }
 
+export interface InscriptionRequest {
+  studentId: number;
+  courseId: number;
+}
+
 export interface InscriptionData extends Inscription {
   student: Student;
   course: Course;

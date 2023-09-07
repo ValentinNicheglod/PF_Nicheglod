@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { Inscription, NameData } from './models';
+import { Inscription, InscriptionRequest, NameData } from './models';
 import { CoursesService } from '../courses/courses.service';
 import { StudentsService } from '../students/students.service';
+import { MatDialog } from '@angular/material/dialog';
+import { InscriptionFormComponent } from './components/inscription-form/inscription-form.component';
+import { Store } from '@ngrx/store';
+import { InscriptionsActions } from './store/inscriptions.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +25,12 @@ export class InscriptionsService {
   courseNames: NameData = {};
   studentNames: NameData = {};
 
-  constructor(private _coursesService: CoursesService, private _studentsService: StudentsService) {
+  constructor(
+    private _coursesService: CoursesService,
+    private _studentsService: StudentsService,
+    private _modalController: MatDialog,
+    private store: Store
+  ) {
     this.getCourseNames();
     this.getStudentsNames();
   }
@@ -68,6 +77,15 @@ export class InscriptionsService {
           this._studentNames$.next(studentNames);
         }
       });
+  }
+
+  openCreationModal(): void {
+    const modalRef = this._modalController
+      .open(InscriptionFormComponent, { width: '400px' });
+
+    modalRef.afterClosed().subscribe((inscriptionData: InscriptionRequest) => {
+      inscriptionData && this.store.dispatch(InscriptionsActions.createInscription({ data: inscriptionData }))
+    });
   }
 
   get observable(): Observable<Inscription[]> {

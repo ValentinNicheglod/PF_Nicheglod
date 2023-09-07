@@ -41,6 +41,7 @@ export class DashboardService {
     private _usersService: UsersService,
     private _modalController: MatDialog,
     private router: Router,
+    private store: Store,
     private httpClient: HttpClient
   ) {
     this.setPageData(router.url.split('/').pop());
@@ -188,13 +189,23 @@ export class DashboardService {
         ))
       )
       .subscribe({
-        next: (data) => this.currentSectionData?.service.subject.next(data)
+        next: (data) => {
+          this.currentSectionData?.service.subject.next(data);
+          if (this.currentPage === 'inscriptions') {
+            this.store.dispatch(InscriptionsActions.loadInscriptions());
+          }
+        }
       })
   }
 
   getAll(page?: string) {
     this.httpClient.get(`http://localhost:3000/${page || this.currentPage}`).subscribe({
-      next: (data) => this.currentSectionData?.service.subject.next(data)
+      next: (data) => {
+        this.currentSectionData?.service.subject.next(data);
+        if (this.currentPage === 'inscriptions') {
+          this.store.dispatch(InscriptionsActions.loadInscriptions());
+        }
+      }
     })
   }
 

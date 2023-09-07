@@ -14,7 +14,7 @@ import { inscriptionsData, selectInscriptionsState } from './store/inscriptions.
 })
 export class InscriptionsComponent {
   columns: string[];
-  inscriptions: Observable<InscriptionData[] | null>;
+  inscriptions: Observable<Inscription[] | null>;
 
   /* courseNames: Observable<NameData>;
   studentNames: Observable<NameData>; */

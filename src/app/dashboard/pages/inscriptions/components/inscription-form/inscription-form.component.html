@@ -3,11 +3,19 @@
   <form [formGroup]="inscriptionForm" (submit)="onSubmit()">
     <mat-form-field class="w-full">
       <mat-label>Estudiante</mat-label>
-      <input matInput formControlName="student" required>
+      <mat-select formControlName="studentId">
+        <mat-option *ngFor="let student of (studentOptions | async)" [value]="student.id">
+          {{ student.name | fullName: student.surname }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field class="w-full">
       <mat-label>Curso</mat-label>
-      <input matInput formControlName="course" required>
+      <mat-select formControlName="courseId">
+        <mat-option *ngFor="let course of (courseOptions | async)" [value]="course.id">
+          {{ course.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </form>
 </mat-dialog-content>

@@ -1,26 +1,43 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { InscriptionsActions } from '../../store/inscriptions.actions';
+import { Observable } from 'rxjs';
+import { Course } from '../../../courses/models';
+import { courseOptions, studentOptions } from '../../store/inscriptions.selectors';
+import { Student } from '../../../students/models';
 
 @Component({
   selector: 'app-inscription-form',
   templateUrl: './inscription-form.component.html',
   styleUrls: ['./inscription-form.component.scss']
 })
-export class InscriptionFormComponent {
+export class InscriptionFormComponent implements OnInit {
   action: 'Crear' | 'Editar' = 'Crear';
   inscriptionForm: FormGroup = new FormGroup({});
 
   formControls = {
-    student: new FormControl('', Validators.required),
-    inscription: new FormControl('', Validators.required)
+    studentId: new FormControl('', Validators.required),
+    courseId: new FormControl('', Validators.required)
   };
+
+  courseOptions: Observable<Course[]>;
+  studentOptions: Observable<Student[]>;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<InscriptionFormComponent>
+    private dialogRef: MatDialogRef<InscriptionFormComponent>,
+    private store: Store
   ) {
     this.setFormData();
+    this.courseOptions = store.select(courseOptions);
+    this.studentOptions = store.select(studentOptions);
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(InscriptionsActions.loadCourseOptions());
+    this.store.dispatch(InscriptionsActions.loadStudentOptions());
   }
 
   setFormData() {
