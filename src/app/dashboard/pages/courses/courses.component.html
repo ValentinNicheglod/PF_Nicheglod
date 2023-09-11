@@ -24,6 +24,10 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let course; index as i">
         <div class="flex justify-end gap-1">
+          <button mat-icon-button matTooltip="Ver estudiantes" (click)="openCourseDetailModal(course)">
+            <mat-icon class="text-gray-600">badge</mat-icon>
+          </button>
+
           <button mat-icon-button matTooltip="Editar" (click)="openEditCourseModal(course)">
             <mat-icon class="text-gray-600">edit</mat-icon>
           </button>

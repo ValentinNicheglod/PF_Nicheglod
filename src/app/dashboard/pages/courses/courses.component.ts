@@ -15,10 +15,14 @@ export class CoursesComponent {
 
   constructor(
     private _coursesService: CoursesService,
-    private _dashboardService: DashboardService
+    private _dashboardService: DashboardService,
   ) {
     this.courses = this._coursesService.observable;
     this.columns = this._coursesService.columns;
+  }
+
+  openCourseDetailModal(course: Course): void {
+    this._dashboardService.openDetailModal({ course });
   }
 
   openEditCourseModal(course: Course): void {

@@ -30,4 +30,12 @@ export class CoursesService {
         this.getExecuted = true;
       });
   }
+
+  getCourseInscriptions(courseId: number) {
+    return this.httpClient.get<Course[]>(`http://localhost:3000/inscriptions?courseId=${courseId}&_expand=student`);
+  }
+
+  deleteCourseInscription(inscriptionId: number) {
+    return this.httpClient.delete(`http://localhost:3000/inscriptions/${inscriptionId}`);
+  }
 }

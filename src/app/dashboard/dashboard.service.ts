@@ -12,6 +12,7 @@ import { StudentsService } from './pages/students/students.service';
 import { StudentFormComponent } from './pages/students/components/student-form/student-form.component';
 import { InscriptionFormComponent } from './pages/inscriptions/components/inscription-form/inscription-form.component';
 import { InscriptionsService } from './pages/inscriptions/inscriptions.service';
+import { CourseDetailComponent } from './pages/courses/components/course-detail/course-detail.component';
 import { Store } from '@ngrx/store';
 import { InscriptionsActions } from './pages/inscriptions/store/inscriptions.actions';
 import { isAdminUser } from '../store/auth.selector';
@@ -23,6 +24,7 @@ interface HeaderData {
 
 interface SectionData {
   formComponent: any;
+  detailComponent?: any;
   service: any;
 }
 
@@ -88,6 +90,7 @@ export class DashboardService {
         this.currentSectionData = {
           service: this._studentsService,
           formComponent: StudentFormComponent,
+          detailComponent: null
         }
         break;
       }
@@ -110,6 +113,7 @@ export class DashboardService {
         this.currentSectionData = {
           service: this._coursesService,
           formComponent: CourseFormComponent,
+          detailComponent: CourseDetailComponent
         }
         break;
       }
@@ -159,6 +163,18 @@ export class DashboardService {
   edit(data: any) {
     this.httpClient.put(`http://localhost:3000/${this.currentPage}/${data.id}`, data)
       .subscribe(() => this.getAll())
+  }
+
+  openDetailModal(data: object): void {
+    const modalRef = this._modalController
+      .open(this.currentSectionData?.detailComponent, {
+        width: '600px',
+        data
+      });
+
+    modalRef.afterClosed().subscribe((data) => {
+      data && this.edit(data);
+    });
   }
 
   openDeleteConfirmation(
